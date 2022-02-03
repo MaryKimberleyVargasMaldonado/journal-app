@@ -10,7 +10,7 @@ export const JournalScreen = () => {
 
 	// R E T U R N
 	return (
-		<div className="journal__main-content">
+		<div className="journal__main-content animate__animated animate__fadeIn animate__faster">
 			<Sidebar />
 
 			<main>{active ? <NoteScreen /> : <NothingSelected />}</main>

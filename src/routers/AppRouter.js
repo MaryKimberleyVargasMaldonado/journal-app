@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../actions/auth";
 import { PrivateRoute } from "./PrivateRoute";
 import { PublicRoute } from "./PublicRoute";
-import { loadNodes } from "../helpers/loadNotes";
+import { startLoadingNotes } from "../actions/notes";
 
 export const AppRouter = () => {
 	//  U S E    D I S P A T C H I O N
@@ -21,12 +21,13 @@ export const AppRouter = () => {
 
 	// E F F E C T
 	useEffect(() => {
-		firebase.auth().onAuthStateChanged((user) => {
+		firebase.auth().onAuthStateChanged(async (user) => {
 			// ? evalua si el obj user tiene algo, entonces pregunta si existe el uid
 			if (user?.uid) {
 				dispatch(login(user.uid, user.displayName));
 				setIsLoggedIn(true);
-				loadNodes(user.uid);
+
+				dispatch(startLoadingNotes(user.uid)); // startLoadingNotes
 			} else {
 				setIsLoggedIn(false);
 			}
@@ -53,7 +54,7 @@ export const AppRouter = () => {
 					<PrivateRoute
 						path="/"
 						isAuthenticated={isLoggedIn}
-						element={<AuthRouter />}
+						element={<JournalScreen />}
 					/>
 					{/* <Route
 						path="/auth/*"

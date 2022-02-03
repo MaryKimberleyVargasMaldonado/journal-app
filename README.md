@@ -14,3 +14,33 @@ En la versión 6 del Router en lugar de `<Redirect/>` se utiliza `<Navigate/>`
 > You may put your routes in whatever order you wish and the router will automatically detect the best route for the current URL. This prevents bugs due to manually putting routes in the wrong order in a `<Switch>`
 
 sdsds
+
+# MOMENT JS
+
+https://momentjs.com/
+
+Librería para manejar fechas
+
+## Instalar
+
+npm install moment --save
+
+# useRef:
+
+Permite almacenar una variable mutable que no va a redibujar todo el componente si cambia.
+
+# Sweet alert
+
+Librería para mensajes de error, etc :
+
+## Instalar:
+
+> npm install sweetalert2
+
+## Importación:
+
+import Swal from 'sweetalert2'
+
+### Sintaxis:
+
+> Swal.fire("titulo",mensaje/cuerpo,"icono");

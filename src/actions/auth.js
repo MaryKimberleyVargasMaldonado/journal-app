@@ -2,6 +2,7 @@ import { types } from "../types/types";
 import { firebase, googleAuthProvider } from "../firebase/firebase-config";
 import { finishLoading, startLoading } from "./ui";
 import Swal from "sweetalert2";
+import { noteLogout } from "./notes";
 
 // S T A R T   L O G I N   E M A I L  -  P A S S W O R D
 export const startLoginEmailPassword = (email, password) => {
@@ -58,15 +59,16 @@ export const login = (uid, displayName) => ({
 	payload: { uid, displayName },
 });
 
-// L O G O U T
-export const logout = () => {
-	type: types.logout;
-};
+// L O G O U T  -	 A C T I O N
+export const logout = () => ({
+	type: types.logout,
+});
 
 // S T A R T   L O G O U T
 export const startLogout = () => {
 	return async (dispatch) => {
 		await firebase.auth().signOut();
 		dispatch(logout());
+		dispatch(noteLogout());
 	};
 };
